@@ -82,28 +82,46 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
       style={{ overflowX: "hidden" }}
     >
-
       {/* MEDIA QUERY INLINE */}
       <style>
         {`
           @media (max-width: 1024px) {
+            main {
+              margin-left: 0 !important;
+              padding: 16px !important;
+            }
             .course-container {
               flex-direction: column !important;
-              margin-right: 0 !important;             
-            }
-            .course-text {
-              max-width: 90% !important; 
-              margin: 0 auto !important; 
-              padding-bottom: 50px !important;
-              white-space: normal !important;
-        
+              align-items: center !important;
+              margin-right: 0 !important;
+              gap: 20px !important;
             }
             .course-card {
               width: 100% !important;
-              max-width: 400px !important;
+              max-width: 350px !important;
+              margin: 0 auto !important;
+            }
+            .course-text {
+              max-width: 90% !important;
+              margin: 0 auto !important;
+              padding-top: 10px !important;
+              white-space: normal !important;
+              text-align: center !important;
             }
             .watch-button {
-              padding: 6px 0 !important;
+              padding: 8px 0 !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h2 {
+              font-size: 1.5rem !important;
+            }
+            .course-text h3 {
+              font-size: 1.3rem !important;
+            }
+            .course-text p {
+              font-size: 0.9rem !important;
             }
           }
         `}
@@ -137,10 +155,10 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       </header>
 
       {/* MAIN */}
-      <main style={{ marginLeft: '60px', padding: '32px 16px' }}>
-        <div style={{ marginBottom: '32px' }}>
-          <h2 style={{ color: 'white', fontSize: '1.975rem', marginBottom: '8px' }}>Suas Aulas</h2>
-          <p style={{ color: '#d1d5db', margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
+      <main style={{ marginLeft: "60px", padding: "32px 16px" }}>
+        <div style={{ marginBottom: "32px" }}>
+          <h2 style={{ color: "white", fontSize: "1.975rem", marginBottom: "8px" }}>Suas Aulas</h2>
+          <p style={{ color: "#d1d5db", margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
@@ -156,7 +174,6 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                 flexDirection: index % 2 === 1 ? "row-reverse" : "row",
               }}
             >
-              {/* Card do vídeo */}
               <Card
                 className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
                 style={{ marginBottom: "60px", width: "400px" }}
@@ -199,7 +216,6 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                 </CardContent>
               </Card>
 
-              {/* Texto ao lado do vídeo */}
               <div
                 className="course-text"
                 style={{
