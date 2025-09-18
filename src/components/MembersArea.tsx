@@ -232,7 +232,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                   O que você vai aprender:
                 </h3>
                 {course.sideText.map((text, idx) => (
-                  <p key={idx} style={{ marginBottom: "8px" }}>{text}</p>
+                  <p key={idx} style={{ fontSize: "15px", marginBottom: "8px" }}>{text}</p>
                 ))}
               </div>
             </div>

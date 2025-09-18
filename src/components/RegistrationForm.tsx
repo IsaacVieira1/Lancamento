@@ -44,9 +44,9 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
       setFade(false);
       setTimeout(() => {
         setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-        setFade(true); // inicia fade in
-      }, 300); // tempo de fade out
-    }, 3000); // tempo entre frases
+        setFade(true);
+      }, 300);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -72,9 +72,9 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 text-left">
+          <form onSubmit={handleSubmit} className="space-y-4 text-left" style={{ maxWidth: "490px", margin: "0 auto" }}>
             <div className="space-y-2">
-              <Label htmlFor="name">Nome completo</Label>
+              <Label htmlFor="name" style={{ fontSize: "1rem" }}>Nome completo</Label>
               <Input
                 id="name"
                 type="text"
@@ -82,11 +82,12 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 required
-                style={{ height: "3rem", padding: "0 1rem", fontSize: "1.125rem" }}
+                style={{ height: "2.8rem", padding: "0 0.9rem", fontSize: "1.05rem" }}
               />
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+              <Label htmlFor="email" style={{ fontSize: "1rem" }}>E-mail</Label>
               <Input
                 id="email"
                 type="email"
@@ -94,11 +95,12 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 required
-                style={{ height: "3rem", padding: "0 1rem", fontSize: "1.125rem" }}
+                style={{ height: "2.8rem", padding: "0 0.9rem", fontSize: "1.05rem" }}
               />
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="whatsapp">WhatsApp</Label>
+              <Label htmlFor="whatsapp" style={{ fontSize: "1rem" }}>WhatsApp</Label>
               <Input
                 id="whatsapp"
                 type="tel"
@@ -106,32 +108,40 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
                 value={formData.whatsapp}
                 onChange={(e) => handleInputChange("whatsapp", e.target.value)}
                 required
-                style={{ height: "3rem", padding: "0 1rem", fontSize: "1.125rem" }}
+                style={{ height: "2.8rem", padding: "0 0.9rem", fontSize: "1.05rem" }}
               />
             </div>
 
             <Button
               type="submit"
-              className="w-full rounded-full py-6 text-lg font-semibold"
-              style={{ backgroundColor: "rgba(56, 9, 9, 1)", color: "white" }}
+              className="w-full rounded-full text-lg font-semibold"
+              style={{
+                backgroundColor: "rgba(56, 9, 9, 1)",
+                color: "white",
+                padding: "20px 0",
+                marginTop: "20px",
+                cursor: "pointer",
+              }}
             >
               Acessar Área de Membros
             </Button>
           </form>
+
         </div>
       </div>
 
-      {/* Coluna direita - frases animadas */}
       <div className="hidden md:flex flex-col justify-center items-center text-white bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-10">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          {phrases[currentPhraseIndex]}
-        </h2>
-        <p
-          className={`text-center text-gray-300 max-w-sm transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
-            }`}
-        >
-          {descriptions[currentPhraseIndex]}
-        </p>
+        <div style={{ marginTop: "60px" }}>
+          <h2 className="text-2xl font-bold mb-4 text-center">
+            {phrases[currentPhraseIndex]}
+          </h2>
+          <p
+            className={`text-center text-gray-300 max-w-sm transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
+              }`}
+          >
+            {descriptions[currentPhraseIndex]}
+          </p>
+        </div>
 
       </div>
     </div>
