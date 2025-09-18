@@ -78,7 +78,10 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div
+      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+      style={{ overflowX: "hidden" }}
+    >
 
       {/* MEDIA QUERY INLINE */}
       <style>
@@ -87,6 +90,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
             .course-container {
               flex-direction: column !important;
               margin-right: 0 !important;
+              overflow-x: hidden !important;
             }
             .course-text {
               max-width: 100% !important;
@@ -146,6 +150,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               key={course.id}
               className="course-container"
               style={{
+                
                 display: "flex",
                 gap: "20px",
                 marginRight: "65px",
