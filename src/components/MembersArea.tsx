@@ -80,6 +80,33 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
 
+      {/* MEDIA QUERY INLINE */}
+      <style>
+        {`
+          @media (max-width: 1024px) {
+            .course-container {
+              flex-direction: column !important;
+              margin-right: 0 !important;
+            }
+            .course-text {
+              max-width: 100% !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+              padding-top: 20px !important;
+              white-space: normal !important;
+            }
+            .course-card {
+              width: 100% !important;
+              max-width: 400px !important;
+            }
+            .watch-button {
+              padding: 6px 0 !important;
+            }
+          }
+        `}
+      </style>
+
+      {/* HEADER */}
       <header className="bg-black/20 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -106,18 +133,18 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         </div>
       </header>
 
+      {/* MAIN */}
       <main style={{ marginLeft: '60px', padding: '32px 16px' }}>
         <div style={{ marginBottom: '32px' }}>
           <h2 style={{ color: 'white', fontSize: '1.975rem', marginBottom: '8px' }}>Suas Aulas</h2>
-          <p style={{ color: '#d1d5db', margin: 0 }}>
-            Assista as aulas da jornada no seu próprio ritmo
-          </p>
+          <p style={{ color: '#d1d5db', margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
           {courses.map((course, index) => (
             <div
               key={course.id}
+              className="course-container"
               style={{
                 display: "flex",
                 gap: "20px",
@@ -128,19 +155,14 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
             >
               {/* Card do vídeo */}
               <Card
-                className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
+                className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
                 style={{ marginBottom: "60px", width: "400px" }}
               >
                 <div style={{ position: "relative" }}>
                   <Image
                     src={course.thumbnail}
                     alt={course.title}
-                    style={{
-                      width: "100%",
-                      height: "200px",
-                      objectFit: "cover",
-                      borderRadius: "0.5rem",
-                    }}
+                    style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "0.5rem" }}
                   />
                   <div
                     style={{
@@ -162,18 +184,11 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                   <h3 style={{ fontWeight: "bold", color: "white", fontSize: "20px", marginBottom: "5px" }}>
                     {course.title}
                   </h3>
-                  <p style={{ color: "white", fontSize: "15px", marginBottom: "8px" }}>
-                    {course.description}
-                  </p>
+                  <p style={{ color: "white", fontSize: "15px", marginBottom: "8px" }}>{course.description}</p>
                   <Button
                     onClick={() => window.open(course.url, "_blank")}
-                    style={{
-                      cursor: "pointer",
-                      marginTop: "10px",
-                      fontSize: "15px",
-                      padding: "6px 120px",
-                    }}
-                    className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                    className="watch-button w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                    style={{ cursor: "pointer", marginTop: "10px", fontSize: "15px", padding: "6px 120px" }}
                   >
                     Assistir
                     <Play className="w-3 h-3 ml-2" />
@@ -183,6 +198,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
 
               {/* Texto ao lado do vídeo */}
               <div
+                className="course-text"
                 style={{
                   color: "white",
                   maxWidth: "300px",
@@ -193,18 +209,19 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                   marginLeft: "30px",
                 }}
               >
-                <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>O que você vai aprender:</h3>
+                <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>
+                  O que você vai aprender:
+                </h3>
                 {course.sideText.map((text, idx) => (
                   <p key={idx} style={{ marginBottom: "8px" }}>{text}</p>
                 ))}
               </div>
-
             </div>
           ))}
         </div>
       </main>
 
-      {/* NOVA SEÇÃO DE CARDS INFLADOS */}
+      {/* CARDS INFLADOS */}
       <div
         style={{
           display: "flex",
@@ -216,30 +233,10 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         }}
       >
         {[
-          {
-            title: "Clareza",
-            text: "Entenda de forma simples o que realmente é Personal Brand e por que ela é a chave para atrair clientes sem precisar virar refém de likes ou tendências passageiras.",
-            colorFrom: "#4B0082",
-            colorTo: "#1A1A40",
-          },
-          {
-            title: "Método",
-            text: "Descubra o passo a passo em 10 etapas para transformar sua presença no digital em vendas — sem depender de improviso ou “inspiração” para postar.",
-            colorFrom: "#800000",
-            colorTo: "#4B0000",
-          },
-          {
-            title: "Tecnologia",
-            text: "Experimente o poder dos meus Agentes de IA, para manter sua comunicação consistente e alinhada com sua essência — mesmo quando faltar tempo ou criatividade.",
-            colorFrom: "#003366",
-            colorTo: "#001933",
-          },
-          {
-            title: "Resultados",
-            text: "Aprenda como usar sua autoridade digital para gerar confiança, ser lembrado e fechar negócios reais — porque visibilidade sem clientes não paga as contas.",
-            colorFrom: "#664400",
-            colorTo: "#331a00",
-          },
+          { title: "Clareza", text: "Entenda de forma simples o que realmente é Personal Brand e por que ela é a chave para atrair clientes sem precisar virar refém de likes ou tendências passageiras.", colorFrom: "#4B0082", colorTo: "#1A1A40" },
+           { title: "Método", text: "Descubra o passo a passo em 10 etapas para transformar sua presença no digital em vendas — sem depender de improviso ou “inspiração” para postar.", colorFrom: "#800000", colorTo: "#4B0000" },
+          { title: "Tecnologia", text: "Experimente o poder dos meus Agentes de IA, para manter sua comunicação consistente e alinhada com sua essência — mesmo quando faltar tempo ou criatividade.", colorFrom: "#003366", colorTo: "#001933" },
+          { title: "Resultados", text: "Aprenda como usar sua autoridade digital para gerar confiança, ser lembrado e fechar negócios reais — porque visibilidade sem clientes não paga as contas.", colorFrom: "#664400", colorTo: "#331a00" },
         ].map((card, idx) => (
           <div
             key={idx}
@@ -262,14 +259,13 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 20px rgba(0,0,0,0.25)";
             }}
           >
-            <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "12px" }}>
-              {card.title}
-            </h3>
+            <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "12px" }}>{card.title}</h3>
             <p style={{ fontSize: "0.95rem", lineHeight: "1.5" }}>{card.text}</p>
           </div>
         ))}
       </div>
 
+      {/* SEÇÃO RAFA */}
       <div
         style={{
           display: "flex",
@@ -284,24 +280,10 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         <img
           src="/images/01-removebg-preview.png"
           alt="Rafa Carmona"
-          style={{
-            width: "400px",
-            borderRadius: "8px",
-            maxWidth: "100%",
-          }}
+          style={{ width: "400px", borderRadius: "8px", maxWidth: "100%" }}
         />
-
-        <div
-          style={{
-            color: "white",
-            maxWidth: "500px",
-            lineHeight: "1.6",
-            textAlign: "left",
-          }}
-        >
-          <h2 style={{ fontSize: "2rem", marginBottom: "16px" }}>
-            Rafa Carmona
-          </h2>
+        <div style={{ color: "white", maxWidth: "500px", lineHeight: "1.6", textAlign: "left" }}>
+          <h2 style={{ fontSize: "2rem", marginBottom: "16px" }}>Rafa Carmona</h2>
           <p style={{ marginBottom: "12px" }}>
             Rafa Carmona nasceu para liderar, ensinar e transformar a mentalidade de pessoas que buscam autoridade no digital.
           </p>
@@ -309,12 +291,12 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
             Com uma trajetória internacional consolidada, Rafa ajudou empreendedores e CEOs a desbloquear seu verdadeiro valor e a se tornarem ímãs de oportunidades.
           </p>
           <p style={{ marginBottom: "12px" }}>
-            Seu método é direto ao ponto: construir autoridade, atrair reconhecimento e transformar presença em resultados reais.
-            Agora, ele está determinado a te guiar nessa jornada e mostrar como o mercado pode enxergar (e valorizar) todo o seu potencial.
+            Seu método é direto ao ponto: construir autoridade, atrair reconhecimento e transformar presença em resultados reais. Agora, ele está determinado a te guiar nessa jornada e mostrar como o mercado pode enxergar (e valorizar) todo o seu potencial.
           </p>
         </div>
       </div>
 
+      {/* FOOTER */}
       <footer className="bg-black/20 backdrop-blur-sm border-t border-white/10 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between">
