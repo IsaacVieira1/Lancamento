@@ -72,7 +72,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 text-left" style={{ maxWidth: "490px", margin: "0 auto" }}>
+          <form onSubmit={handleSubmit} className="space-y-4 text-left" style={{ maxWidth: "450px", margin: "0 auto" }}>
             <div className="space-y-2">
               <Label htmlFor="name" style={{ fontSize: "1rem" }}>Nome completo</Label>
               <Input

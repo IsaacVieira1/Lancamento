@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { LogOut, MessageCircle, Play } from "lucide-react";
+import { LogOut, MessageCircle, Play, X } from "lucide-react";
 import { Image } from "./Fallback/ImageWithFallback";
 
 interface MembersAreaProps {
@@ -9,6 +10,8 @@ interface MembersAreaProps {
 }
 
 export function MembersArea({ user, onLogout }: MembersAreaProps) {
+  const [openVideoUrl, setOpenVideoUrl] = useState<string | null>(null);
+
   const courses = [
     {
       id: 1,
@@ -18,7 +21,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       thumbnail:
         "https://images.unsplash.com/photo-1557838923-2985c318be48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       duration: "45 min",
-      url: "https://www.youtube.com/watch?v=VIDEO1",
+      url: "https://www.youtube.com/embed/VIDEO1",
       sideText: [
         "O que é a Personal Brand e por que ela é indispensável para construir sua autoridade no digital.",
         "Os 3 pilares da autoridade digital",
@@ -35,7 +38,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       thumbnail:
         "https://images.unsplash.com/photo-1673515335586-f9f662c01482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       duration: "50 min",
-      url: "https://www.youtube.com/watch?v=VIDEO2",
+      url: "https://www.youtube.com/embed/VIDEO2",
       sideText: [
         "Os 10 passos para ativar a sua Personal Brand e se destacar no digital.",
         "Como transformar sua história em storytelling gerando conexão e vendas.",
@@ -51,7 +54,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       thumbnail:
         "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       duration: "40 min",
-      url: "https://www.youtube.com/watch?v=VIDEO3",
+      url: "https://www.youtube.com/embed/VIDEO3",
       sideText: [
         "Como o algoritmo funciona e como usá-lo a seu favor.",
         "Estratégias para gerar engajamento genuíno.",
@@ -67,7 +70,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       thumbnail:
         "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       duration: "55 min",
-      url: "https://www.youtube.com/watch?v=VIDEO4",
+      url: "https://www.youtube.com/embed/VIDEO4",
       sideText: [
         "Como criar ofertas irresistíveis para sua audiência.",
         "Modelos de monetização que funcionam no mercado digital.",
@@ -78,10 +81,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
   ];
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
-      style={{ overflowX: "hidden" }}
-    >
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" style={{ overflowX: "hidden" }}>
       {/* MEDIA QUERY INLINE */}
       <style>
         {`
@@ -161,86 +161,117 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           <p style={{ color: "#d1d5db", margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
         </div>
 
+        {/* LISTA DE CURSOS COM LINHA */}
         <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
           {courses.map((course, index) => (
-            <div
-              key={course.id}
-              className="course-container"
-              style={{
-                display: "flex",
-                gap: "20px",
-                marginRight: "65px",
-                alignItems: "flex-start",
-                flexDirection: index % 2 === 1 ? "row-reverse" : "row",
-              }}
-            >
-              <Card
-                className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
-                style={{ marginBottom: "60px", width: "400px" }}
-              >
-                <div style={{ position: "relative" }}>
-                  <Image
-                    src={course.thumbnail}
-                    alt={course.title}
-                    style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "0.5rem" }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "8px",
-                      right: "8px",
-                      backgroundColor: "rgba(0,0,0,0.6)",
-                      color: "white",
-                      fontSize: "10px",
-                      padding: "2px 5px",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    {course.duration}
-                  </div>
-                </div>
-
-                <CardContent style={{ padding: "10px" }}>
-                  <h3 style={{ fontWeight: "bold", color: "white", fontSize: "20px", marginBottom: "5px" }}>
-                    {course.title}
-                  </h3>
-                  <p style={{ color: "white", fontSize: "15px", marginBottom: "8px" }}>{course.description}</p>
-                  <Button
-                    onClick={() => window.open(course.url, "_blank")}
-                    className="watch-button w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
-                    style={{ cursor: "pointer", marginTop: "10px", fontSize: "15px", padding: "6px 120px" }}
-                  >
-                    Assistir
-                    <Play className="w-3 h-3 ml-2" />
-                  </Button>
-                </CardContent>
-              </Card>
-
+            <div key={course.id} style={{ display: "flex", flexDirection: "column" }}>
               <div
-                className="course-text"
+                className="course-container"
                 style={{
-                  color: "white",
-                  maxWidth: "300px",
-                  paddingTop: "60px",
-                  lineHeight: "1.6",
-                  whiteSpace: "nowrap",
-                  marginRight: index % 2 === 1 ? "20%" : "10px",
-                  marginLeft: "30px",
+                  display: "flex",
+                  gap: "20px",
+                  marginRight: "65px",
+                  alignItems: "flex-start",
+                  flexDirection: index % 2 === 1 ? "row-reverse" : "row",
                 }}
               >
-                <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>
-                  O que você vai aprender:
-                </h3>
-                {course.sideText.map((text, idx) => (
-                  <p key={idx} style={{ fontSize: "15px", marginBottom: "8px" }}>{text}</p>
-                ))}
+                <Card
+                  className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
+                  style={{ marginBottom: "60px", width: "400px" }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <Image
+                      src={course.thumbnail}
+                      alt={course.title}
+                      style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "0.5rem" }}
+                    />
+
+                    {/* DURAÇÃO */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "8px",
+                        right: "8px",
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        color: "white",
+                        fontSize: "10px",
+                        padding: "2px 5px",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      {course.duration}
+                    </div>
+
+                    {/* OVERLAY DO PLAY */}
+                    <div
+                      onClick={() => setOpenVideoUrl(course.url)}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0,0,0,0.3)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        borderRadius: "0.5rem",
+                        transition: "background-color 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
+                    >
+                      <Play style={{ width: "30px", height: "30px", color: "white" }} />
+                    </div>
+                  </div>
+
+                  <CardContent style={{ padding: "10px" }}>
+                    <h3 style={{ fontWeight: "bold", color: "white", fontSize: "20px", marginBottom: "5px" }}>
+                      {course.title}
+                    </h3>
+                    <p style={{ color: "white", fontSize: "15px", marginBottom: "8px" }}>{course.description}</p>
+                    <Button
+                      onClick={() => window.open(course.url.replace("embed/", "watch?v="), "_blank")}
+                      className="watch-button w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                      style={{ cursor: "pointer", marginTop: "10px", fontSize: "15px", padding: "6px 120px" }}
+                    >
+                      Assistir
+                      <Play className="w-3 h-3 ml-2" />
+                    </Button>
+
+                  </CardContent>
+                </Card>
+
+                <div
+                  className="course-text"
+                  style={{
+                    color: "white",
+                    maxWidth: "300px",
+                    paddingTop: "60px",
+                    lineHeight: "1.6",
+                    whiteSpace: "nowrap",
+                    marginRight: index % 2 === 1 ? "20%" : "10px",
+                    marginLeft: "30px",
+                  }}
+                >
+                  <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>
+                    O que você vai aprender:
+                  </h3>
+                  {course.sideText.map((text, idx) => (
+                    <p key={idx} style={{ fontSize: "15px", marginBottom: "8px" }}>{text}</p>
+                  ))}
+                </div>
               </div>
+
+              {/* LINHA SEPARADORA */}
+              <hr style={{ border: "1px solid rgba(255,255,255,0.2)", width: "100%", margin: "20px 0" }} />
             </div>
           ))}
         </div>
       </main>
 
-      {/* CARDS INFLADOS */}
+      {/* CARDS INFERIORES */}
       <div
         style={{
           display: "flex",
@@ -342,6 +373,58 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           </div>
         </div>
       </footer>
+
+      {/* MODAL DE VÍDEO */}
+      {openVideoUrl && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,0.85)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+            padding: "20px",
+          }}
+        >
+          <div style={{ position: "relative", width: "100%", maxWidth: "900px" }}>
+            <iframe
+              width="100%"
+              height="500px"
+              src={openVideoUrl}
+              title="Vídeo do Curso"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                borderRadius: "0.5rem"
+              }}
+            ></iframe>
+            <Button
+              onClick={() => setOpenVideoUrl(null)}
+              style={{
+                position: "absolute",
+                top: "-40px",
+                right: "0",
+                 backgroundColor: "hsla(0, 67%, 32%, 1.00)",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                cursor: "pointer",
+              }}
+            >
+              <X className="w-4 h-4" />
+              Fechar
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
