@@ -59,7 +59,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             }}
           >
             <img
-              src="/public/images/loogo4.png"
+              src="/images/loogo4.png"
               alt="Logo"
               style={{ height: "140px", marginBottom: "30px" }}
             />

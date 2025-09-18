@@ -282,7 +282,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         }}
       >
         <img
-          src="/public/images/01-removebg-preview.png"
+          src="/images/01-removebg-preview.png"
           alt="Rafa Carmona"
           style={{
             width: "400px",
