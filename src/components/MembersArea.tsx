@@ -92,7 +92,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               max-width: 100% !important;
               margin-left: 0 !important;
               margin-right: 0 !important;
-              padding-top: 20px !important;
+              padding-bottom: 50px !important; // revisar isso
               white-space: normal !important;
             }
             .course-card {
