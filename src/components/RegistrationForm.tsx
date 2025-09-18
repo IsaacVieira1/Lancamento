@@ -29,12 +29,19 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
     "Torne-se um líder digital reconhecido."
   ];
 
+  const descriptions = [
+    "Comece hoje a criar conteúdos que realmente engajam.",
+    "Construa autoridade e confiança com seu público.",
+    "Aprenda técnicas práticas que aumentam conversões.",
+    "Seja reconhecido como referência no seu nicho."
+  ];
+
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); 
+      setFade(false);
       setTimeout(() => {
         setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
         setFade(true); // inicia fade in
@@ -59,7 +66,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             }}
           >
             <img
-              src="/images/loogo4.png"
+              src="/public/images/loogo4.png"
               alt="Logo"
               style={{ height: "140px", marginBottom: "30px" }}
             />
@@ -120,12 +127,12 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
           {phrases[currentPhraseIndex]}
         </h2>
         <p
-          className={`text-center text-gray-300 max-w-sm transition-opacity duration-500 ${
-            fade ? "opacity-100" : "opacity-0"
-          }`}
+          className={`text-center text-gray-300 max-w-sm transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
+            }`}
         >
-          Participe da Jornada da Autoridade Digital e dê o próximo passo na sua transformação online.
+          {descriptions[currentPhraseIndex]}
         </p>
+
       </div>
     </div>
   );
