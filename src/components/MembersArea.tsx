@@ -99,7 +99,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               size="sm"
               className="bg-white/10 border-white/20 text-white hover:bg-white/20"
             >
-              <LogOut  className="w-4 h-4 mr-2" />
+              <LogOut className="w-4 h-4 mr-2" />
               Sair
             </Button>
           </div>
@@ -193,13 +193,13 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                   marginLeft: "30px",
                 }}
               >
-                <h3 style={{fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>O que você vai aprender:</h3>
+                <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>O que você vai aprender:</h3>
                 {course.sideText.map((text, idx) => (
                   <p key={idx} style={{ marginBottom: "8px" }}>{text}</p>
                 ))}
               </div>
 
-            </div>        
+            </div>
           ))}
         </div>
       </main>
@@ -209,18 +209,18 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "24px",
+          gap: "15px",
           justifyContent: "center",
-          marginTop: "100px",
-          padding: "0 16px",
+          marginTop: "80px",
+          padding: "0 8px",
         }}
       >
         {[
           {
             title: "Clareza",
             text: "Entenda de forma simples o que realmente é Personal Brand e por que ela é a chave para atrair clientes sem precisar virar refém de likes ou tendências passageiras.",
-            colorFrom: "#4B0082", 
-            colorTo: "#1A1A40", 
+            colorFrom: "#4B0082",
+            colorTo: "#1A1A40",
           },
           {
             title: "Método",
@@ -273,11 +273,11 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       <div
         style={{
           display: "flex",
-          alignItems: "center", 
+          alignItems: "center",
           justifyContent: "center",
-          gap: "40px", 
+          gap: "40px",
           marginTop: "250px",
-          flexWrap: "wrap", 
+          flexWrap: "wrap",
           padding: "0 16px",
         }}
       >
