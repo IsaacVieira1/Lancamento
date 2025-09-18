@@ -89,15 +89,14 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           @media (max-width: 1024px) {
             .course-container {
               flex-direction: column !important;
-              margin-right: 0 !important;
-              overflow-x: hidden !important;
+              margin-right: 0 !important;             
             }
             .course-text {
-              max-width: 100% !important;
-              margin-left: 0 !important;
-              margin-right: 0 !important;
-              padding-bottom: 50px !important; // revisar isso
+              max-width: 90% !important; 
+              margin: 0 auto !important; 
+              padding-bottom: 50px !important;
               white-space: normal !important;
+        
             }
             .course-card {
               width: 100% !important;
@@ -150,7 +149,6 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               key={course.id}
               className="course-container"
               style={{
-                
                 display: "flex",
                 gap: "20px",
                 marginRight: "65px",
@@ -239,7 +237,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       >
         {[
           { title: "Clareza", text: "Entenda de forma simples o que realmente é Personal Brand e por que ela é a chave para atrair clientes sem precisar virar refém de likes ou tendências passageiras.", colorFrom: "#4B0082", colorTo: "#1A1A40" },
-           { title: "Método", text: "Descubra o passo a passo em 10 etapas para transformar sua presença no digital em vendas — sem depender de improviso ou “inspiração” para postar.", colorFrom: "#800000", colorTo: "#4B0000" },
+          { title: "Método", text: "Descubra o passo a passo em 10 etapas para transformar sua presença no digital em vendas — sem depender de improviso ou “inspiração” para postar.", colorFrom: "#800000", colorTo: "#4B0000" },
           { title: "Tecnologia", text: "Experimente o poder dos meus Agentes de IA, para manter sua comunicação consistente e alinhada com sua essência — mesmo quando faltar tempo ou criatividade.", colorFrom: "#003366", colorTo: "#001933" },
           { title: "Resultados", text: "Aprenda como usar sua autoridade digital para gerar confiança, ser lembrado e fechar negócios reais — porque visibilidade sem clientes não paga as contas.", colorFrom: "#664400", colorTo: "#331a00" },
         ].map((card, idx) => (
