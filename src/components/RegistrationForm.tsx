@@ -116,7 +116,7 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
 
       {/* Coluna direita - frases animadas */}
       <div className="hidden md:flex flex-col justify-center items-center text-white bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-10">
-        <h2 className="text-3xl font-bold mb-4 text-center">
+        <h2 className="text-2xl font-bold mb-4 text-center">
           {phrases[currentPhraseIndex]}
         </h2>
         <p
