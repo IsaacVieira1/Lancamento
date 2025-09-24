@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { loginWithGoogle, logout, auth } from "../firebase";
+import { loginWithGoogle, auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 interface RegistrationFormProps {

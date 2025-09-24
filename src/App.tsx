@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { RegistrationForm } from "./components/RegistrationForm";
 import { MembersArea } from "./components/MembersArea";
-import { auth, logout } from "./Firebase";
+import { auth, logout } from "./firebase";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
