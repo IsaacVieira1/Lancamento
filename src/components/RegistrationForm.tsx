@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { loginWithGoogle, logout, auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 interface RegistrationFormProps {
   onRegister: (data: { name: string; email: string; whatsapp: string }) => void;
@@ -9,6 +11,14 @@ interface RegistrationFormProps {
 
 export function RegistrationForm({ onRegister }: RegistrationFormProps) {
   const [formData, setFormData] = useState({ name: "", email: "", whatsapp: "" });
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,11 +78,11 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             <img
               src="/images/loogo4.png"
               alt="Logo"
-              style={{ height: "140px", marginBottom: "30px" }}
+              style={{ height: "130px", marginBottom: "-20px", marginTop: "20px" }}
             />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 text-left" style={{ maxWidth: "450px", margin: "0 auto" }}>
+          <form onSubmit={handleSubmit} className="space-y-4 text-left" style={{ maxWidth: "400px", margin: "0 auto",  }}>
             <div className="space-y-2">
               <Label htmlFor="name" style={{ fontSize: "1rem" }}>Nome completo</Label>
               <Input
@@ -112,6 +122,55 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
               />
             </div>
 
+            {/* BOTÃO LOGIN COM GOOGLE ABAIXO DO WHATSAPP */}
+            {!user ? (
+              <button
+                onClick={loginWithGoogle}
+                type="button"
+                className="w-full flex items-center justify-center rounded-full text-lg font-semibold mb-4 mt-2"
+                style={{
+                  backgroundColor: "white",
+                  color: "#000",
+                  padding: "10px 0",
+                  border: "1px solid #ddd",
+                  cursor: "pointer",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                  gap: "10px",
+                }}
+              >
+                {/* Ícone do Google */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 488 512"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <path
+                    fill="#4285F4"
+                    d="M488 261.8c0-17.2-1.6-34.1-4.6-50.4H249v95.2h135.4c-5.8 31.3-23.2 57.9-49.4 75.9v62h79.7c46.8-43.1 73.3-106.7 73.3-182.7z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M249 512c66.2 0 121.7-21.9 162.3-59.5l-79.7-62c-22.1 14.8-50.4 23.5-82.6 23.5-63.5 0-117.2-42.8-136.4-100.5H31v63.1C71.8 467.7 155.2 512 249 512z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M112.6 317c-10.1-29.6-10.1-61.4 0-91l-81.5-63.1C10 209.2 0 243.7 0 278.9c0 35.2 10 69.7 31.1 95.9l81.5-63.1z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M249 100.7c35.8 0 68 12.3 93.4 36.6l70.1-70.1C370.5 29.9 315 8 249 8 155.2 8 71.8 52.3 31 135.3l81.5 63.1c19.2-57.7 72.9-100.5 136.5-100.5z"
+                  />
+                </svg>
+                <div style={{fontSize: "16px",}}>
+                Entrar com Google
+                </div>
+              </button>
+            ) : (
+              <div > // analisar isso aqui depois
+                <p className="text-green-600 font-medium mb-2">Conectado como {user.displayName}</p>
+              </div>
+            )}
+
             <Button
               type="submit"
               className="w-full rounded-full text-lg font-semibold"
@@ -121,17 +180,18 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
                 padding: "20px 0",
                 marginTop: "20px",
                 cursor: "pointer",
+                fontSize: "16px",
               }}
             >
               Acessar Área de Membros
             </Button>
           </form>
-
         </div>
       </div>
 
+      {/* Coluna direita - frases e descrições */}
       <div className="hidden md:flex flex-col justify-center items-center text-white bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-10">
-        <div style={{ marginTop: "60px" }}>
+        <div style={{ marginTop: "10px" }}>
           <h2 className="text-2xl font-bold mb-4 text-center">
             {phrases[currentPhraseIndex]}
           </h2>
@@ -142,7 +202,6 @@ export function RegistrationForm({ onRegister }: RegistrationFormProps) {
             {descriptions[currentPhraseIndex]}
           </p>
         </div>
-
       </div>
     </div>
   );

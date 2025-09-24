@@ -1,52 +1,81 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { RegistrationForm } from "./components/RegistrationForm";
 import { MembersArea } from "./components/MembersArea";
+import { auth, logout } from "./Firebase";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 
 interface User {
-  name: string;
+  displayName: string;
   email: string;
-  whatsapp: string;
+  whatsapp?: string;
 }
 
-function getInitialUser(): User | null {
-  try {
+function App() {
+  const [user, setUser] = useState<User | null>(null);
+
+  // Ao iniciar a aplicação, verifica se há usuário no localStorage
+  useEffect(() => {
     const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
-  } catch {
-    localStorage.removeItem("user");
-    return null;
-  }
-}
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
 
-export default function App() {
-  const [user, setUser] = useState<User | null>(() => getInitialUser());
+  // Monitorar login do Firebase (Google)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        const firebaseUser = {
+          displayName: currentUser.displayName || "",
+          email: currentUser.email || "",
+        };
+        setUser(firebaseUser);
+        localStorage.setItem("user", JSON.stringify(firebaseUser));
+      }
+    });
 
-  const handleRegister = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = () => {
+    logout();
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem("user"); // remove do localStorage
+  };
+
+  const handleRegister = (data: { name: string; email: string; whatsapp: string }) => {
+    const newUser = {
+      displayName: data.name,
+      email: data.email,
+      whatsapp: data.whatsapp,
+    };
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser)); // persiste no navegador
   };
 
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route
           path="/register"
-          element={user ? <Navigate to="/members" /> : <RegistrationForm onRegister={handleRegister} />}
+          element={!user ? <RegistrationForm onRegister={handleRegister} /> : <Navigate to="/members" />}
         />
-
         <Route
           path="/members"
-          element={user ? <MembersArea user={user} onLogout={handleLogout} /> : <Navigate to="/register" />}
+          element={user ? (
+            <MembersArea
+              user={{ name: user.displayName, email: user.email, whatsapp: user.whatsapp || "" }}
+              onLogout={handleLogout}
+            />
+          ) : (
+            <Navigate to="/register" />
+          )}
         />
-
-        <Route path="*" element={<Navigate to={user ? "/members" : "/register"} />} />
+        <Route path="*" element={<Navigate to="/register" />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+export default App;
