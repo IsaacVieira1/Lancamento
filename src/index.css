@@ -80,7 +80,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-green-400: oklch(.792 .209 151.711);
     --color-green-500: oklch(.723 .219 149.579);
-    --color-green-600: oklch(.627 .194 149.214);
+    --color-green-600: rgb(0, 166, 62);
     --color-blue-500: rgb(43, 127, 255);
     --color-blue-600: rgb(21, 93, 251);
     --color-purple-500: oklch(179, 40, 38); 

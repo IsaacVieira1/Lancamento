@@ -3,6 +3,11 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { LogOut, MessageCircle, Play, X } from "lucide-react";
 import { Image } from "./Fallback/ImageWithFallback";
+import { useNavigate } from "react-router-dom";
+import { FaWhatsapp, FaYoutube, FaInstagram } from "react-icons/fa";
+import { CommentsSection } from "./CommentsSection";
+
+
 
 interface MembersAreaProps {
   user: { name: string; email: string; whatsapp: string };
@@ -11,6 +16,7 @@ interface MembersAreaProps {
 
 export function MembersArea({ user, onLogout }: MembersAreaProps) {
   const [openVideoUrl, setOpenVideoUrl] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const courses = [
     {
@@ -18,10 +24,9 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       title: "Aula 01 - Fundamentos da Autoridade Digital",
       description:
         "Aprenda os pilares fundamentais para construir sua presença digital e se tornar uma autoridade no seu nicho.",
-      thumbnail:
-        "https://images.unsplash.com/photo-1557838923-2985c318be48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      duration: "45 min",
-      url: "https://www.youtube.com/embed/VIDEO1",
+      thumbnail: "images/Thumb - Aula 1.png",
+      duration: "1h 32 min",
+      url: "https://www.youtube.com/embed/-O2Sxq9ebUI", // link corrigido para modal
       sideText: [
         "O que é a Personal Brand e por que ela é indispensável para construir sua autoridade no digital.",
         "Os 3 pilares da autoridade digital",
@@ -35,47 +40,14 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
       title: "Aula 02 - Estratégias de Conteúdo e Engajamento",
       description:
         "Descubra como criar conteúdo que converte e engaja sua audiência, transformando seguidores em clientes.",
-      thumbnail:
-        "https://images.unsplash.com/photo-1673515335586-f9f662c01482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      thumbnail: "images/Thumb - Aula 2.png",
       duration: "50 min",
-      url: "https://www.youtube.com/embed/VIDEO2",
+      url: "https://www.youtube.com/embed/PmdGhcYj4pU",
       sideText: [
         "Os 10 passos para ativar a sua Personal Brand e se destacar no digital.",
         "Como transformar sua história em storytelling gerando conexão e vendas.",
         "Os canais certos para aparecer e como usá-los com estratégia.",
         "Como usar provas sociais para aumentar credibilidade e atrair clientes.",
-      ],
-    },
-    {
-      id: 3,
-      title: "Aula 03 - Crescimento e Alcance Orgânico",
-      description:
-        "Aprenda as estratégias para aumentar o alcance orgânico e conquistar mais visibilidade sem depender de anúncios pagos.",
-      thumbnail:
-        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      duration: "40 min",
-      url: "https://www.youtube.com/embed/VIDEO3",
-      sideText: [
-        "Como o algoritmo funciona e como usá-lo a seu favor.",
-        "Estratégias para gerar engajamento genuíno.",
-        "Como manter consistência e frequência sem esgotar sua criatividade.",
-        "Ferramentas gratuitas para analisar e otimizar seu crescimento.",
-      ],
-    },
-    {
-      id: 4,
-      title: "Aula 04 - Monetização e Escala",
-      description:
-        "Transforme sua audiência em clientes e aprenda como escalar seu negócio digital de forma previsível e sustentável.",
-      thumbnail:
-        "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-      duration: "55 min",
-      url: "https://www.youtube.com/embed/VIDEO4",
-      sideText: [
-        "Como criar ofertas irresistíveis para sua audiência.",
-        "Modelos de monetização que funcionam no mercado digital.",
-        "Automação e funis de vendas para escalar resultados.",
-        "Mentalidade de crescimento: como pensar como um CEO digital.",
       ],
     },
   ];
@@ -141,7 +113,38 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-white text-sm">Olá, {user.name.split(" ")[0]}!</span>
+
+            {/* Botão VIP no header */}
             <Button
+              onClick={() => navigate("/vip")}
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro
+                border: "1px solid rgba(255, 204, 0, 0.3)",  // borda amarela
+                color: "rgb(255, 204, 0)",                    // texto amarelo
+                padding: "4px 13px",
+                borderRadius: "0.5rem",
+                fontWeight: 500,
+                fontSize: "14px",
+                transition: "all 0.2s ease",
+                animation: "float 2s ease-in-out infinite",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
+              }}
+            >
+              <Play className="w-3 h-3" />
+              Área VIP
+            </Button>
+
+            <Button
+              style={{ cursor: "pointer", }}
               onClick={onLogout}
               variant="outline"
               size="sm"
@@ -151,8 +154,21 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               Sair
             </Button>
           </div>
+
+          {/* Animação float (se ainda não estiver no style global) */}
+          <style>
+            {`
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+  `}
+          </style>
+
         </div>
       </header>
+
 
       {/* MAIN */}
       <main style={{ marginLeft: "60px", padding: "32px 16px" }}>
@@ -160,6 +176,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           <h2 style={{ color: "white", fontSize: "1.975rem", marginBottom: "8px" }}>Suas Aulas</h2>
           <p style={{ color: "#d1d5db", margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
         </div>
+
 
         {/* LISTA DE CURSOS COM LINHA */}
         <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
@@ -177,13 +194,13 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
               >
                 <Card
                   className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
-                  style={{ marginBottom: "60px", width: "400px" }}
+                  style={{ marginBottom: "60px", width: "430px" }}
                 >
                   <div style={{ position: "relative" }}>
                     <Image
                       src={course.thumbnail}
                       alt={course.title}
-                      style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "0.5rem" }}
+                      style={{ width: "100%", height: "250px", objectFit: "cover", borderRadius: "0.5rem" }}
                     />
 
                     {/* DURAÇÃO */}
@@ -220,7 +237,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                         transition: "background-color 0.3s ease",
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0)")}
                     >
                       <Play style={{ width: "30px", height: "30px", color: "white" }} />
                     </div>
@@ -271,6 +288,49 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
         </div>
       </main>
 
+      {/* BOTÃO ÁREA VIP */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        <Button
+          onClick={() => navigate("/vip")}
+          style={{
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro /20
+            border: "1px solid rgba(255, 204, 0, 0.3)",  // amarelo médio /30
+            color: "rgb(255, 204, 0)",                    // amarelo principal
+            padding: "20px 94px",
+            borderRadius: "0.5rem",
+            fontWeight: 500,
+            fontSize: "15px",
+            transition: "all 0.2s ease",
+            animation: "float 2s ease-in-out infinite",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
+          }}
+        >
+          <Play style={{ width: "16px", height: "16px" }} />
+          Acessar Área VIP
+        </Button>
+
+        {/* Animação */}
+        <style>
+          {`
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+          }
+        `}
+        </style>
+      </div>
+
+
       {/* CARDS INFERIORES */}
       <div
         style={{
@@ -313,7 +373,152 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
             <p style={{ fontSize: "0.95rem", lineHeight: "1.5" }}>{card.text}</p>
           </div>
         ))}
+
       </div>
+
+
+
+      {/* ÁREA DE REDES SOCIAIS MODERNA - GLASS + GRADIENTE */}
+      {/* LINHA SEPARADORA */}
+      <hr style={{ border: "1px solid rgba(255,255,255,0.2)", width: "100%", margin: "100px 0" }} />
+
+      {/* ÁREA DE REDES SOCIAIS MODERNA - GLASS + GRADIENTE COM BOTÃO */}
+      <div style={{
+        backdropFilter: "blur(12px)",
+        borderRadius: "1rem",
+        padding: "40px 20px",
+        marginTop: "80px",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: "24px"
+      }}>
+        {[
+          {
+            title: "WhatsApp",
+            description: "Receba avisos de novas aulas e conteúdos direto no seu WhatsApp.",
+            colorFrom: "#3DDC84",
+            colorTo: "#0F8A5F",
+            link: "https://wa.me/5551994078255",
+            icon: <FaWhatsapp size={40} />
+          },
+          {
+            title: "YouTube",
+            description: "Inscreva-se no meu canal para acessar aulas exclusivas e conteúdos de tráfego.",
+            colorFrom: "#FF4C4C",
+            colorTo: "#C70000",
+            link: "https://youtube.com/seuCanal",
+            icon: <FaYoutube size={40} />
+          },
+          {
+            title: "Instagram",
+            description: "Siga meu Instagram, acompanhe lives, reels e novidades todos os dias.",
+            colorFrom: "#E1306C",
+            colorTo: "#F77737",
+            link: "https://instagram.com/seuPerfil",
+            icon: <FaInstagram size={40} />
+          }
+        ].map((social, idx) => (
+          <div key={idx}
+            style={{
+              flex: "1 1 220px",
+              maxWidth: "260px",
+              background: "rgba(255,255,255,0.05)",
+              borderRadius: "1.2rem",
+              padding: "20px",
+              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "center",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+              backdropFilter: "blur(10px)",
+              border: `1px solid rgba(255,255,255,0.1)`
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLDivElement;
+              el.style.transform = "translateY(-8px) scale(1.02)";
+              el.style.boxShadow = `0 16px 32px ${social.colorTo}40`;
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLDivElement;
+              el.style.transform = "translateY(0) scale(1)";
+              el.style.boxShadow = "0 8px 24px rgba(0,0,0,0.25)";
+            }}
+          >
+            <div style={{ marginBottom: "12px" }}>
+              {social.icon}
+            </div>
+            <h3 style={{ fontWeight: 700, fontSize: "1.2rem", marginBottom: "8px" }}>{social.title}</h3>
+            <p style={{ fontSize: "0.9rem", textAlign: "center", marginBottom: "12px" }}>{social.description}</p>
+
+            {/* Botão para redirecionar */}
+            <Button
+              style={{
+                background: "rgba(255,255,255,0.15)",
+                color: "white",
+                fontWeight: 500,
+                cursor: "pointer",
+                padding: "10px 20px",
+                borderRadius: "0.5rem",
+                border: "1px solid rgba(255,255,255,0.2)",
+                transition: "all 0.25s ease",
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLButtonElement;
+                el.style.background = "rgba(255,255,255,0.3)";
+                el.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLButtonElement;
+                el.style.background = "rgba(255,255,255,0.15)";
+                el.style.transform = "scale(1)";
+              }}
+              onClick={() => window.open(social.link, "_blank")}
+            >
+              Acessar
+            </Button>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        <Button
+          onClick={() => navigate("/vip")}
+          style={{
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            marginTop: "70px",
+            gap: "6px",
+            backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro /20
+            border: "1px solid rgba(255, 204, 0, 0.3)",  // amarelo médio /30
+            color: "rgb(255, 204, 0)",                    // amarelo principal
+            padding: "20px 94px",
+            borderRadius: "0.5rem",
+            fontWeight: 500,
+            fontSize: "15px",
+            transition: "all 0.2s ease",
+            animation: "float 2s ease-in-out infinite",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
+          }}
+        >
+          <Play style={{ width: "16px", height: "16px" }} />
+          Acessar Área VIP
+        </Button>
+      </div>
+
+      {/* SEÇÃO DE COMENTÁRIOS */}
+      <CommentsSection />
+
+
 
       {/* SEÇÃO RAFA */}
       <div
@@ -359,11 +564,9 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                 variant="outline"
                 size="sm"
                 className="bg-green-600/20 border-green-500/30 text-green-400 hover:bg-green-600/30"
+                style={{ cursor: "pointer" }}
                 onClick={() =>
-                  window.open(
-                    `https://wa.me/55${user.whatsapp.replace(/\D/g, "")}`,
-                    "_blank"
-                  )
+                  window.open("https://wa.me/5551994078255", "_blank")
                 }
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
@@ -410,7 +613,7 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
                 position: "absolute",
                 top: "-40px",
                 right: "0",
-                 backgroundColor: "hsla(0, 67%, 32%, 1.00)",
+                backgroundColor: "hsla(0, 67%, 32%, 1.00)",
                 color: "white",
                 display: "flex",
                 alignItems: "center",
@@ -424,7 +627,9 @@ export function MembersArea({ user, onLogout }: MembersAreaProps) {
           </div>
         </div>
       )}
+
+
     </div>
+
   );
 }
-
