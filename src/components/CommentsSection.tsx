@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BsChatDots, BsTrash } from "react-icons/bs";
+import { BsChatDots } from "react-icons/bs";
 
 export function CommentsSection() {
   const [comments, setComments] = useState<any[]>([]);
