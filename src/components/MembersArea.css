@@ -1,0 +1,678 @@
+/* CONTAINER GERAL */
+.impactflix-container {
+  background-color: #0b0b0b;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.impactflix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b0b0b;
+  padding: 16px 40px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Logo */
+.impactflix-logo {
+  height: 45px;
+  object-fit: contain;
+}
+
+/* Lado direito */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-name {
+  color: #ccc;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Botão contornado */
+.vip-outline-button {
+  background: transparent;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vip-outline-button:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+
+.user-avatar {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+
+
+/* BANNER */
+.impactflix-banner {
+  background-image: url("/images/banner.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 120vh; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.banner-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+}
+
+.banner-title {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: white;
+  max-width: 650px;
+  margin-top: -400px;
+  text-transform: uppercase;
+}
+
+/* Transição suave no banner */
+.impactflix-banner {
+  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0.7;
+}
+
+
+/* AULAS */
+.impactflix-classes {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+  background-color: #0f0f0f;
+}
+
+.class-card {
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 480px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.class-card:hover {
+  transform: scale(1.03);
+}
+
+.class-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.class-info {
+  padding: 20px;
+}
+
+.class-info h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: white;
+}
+
+.class-info h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ebebeb;
+  margin-top: -2px;
+  margin-bottom: 10px;
+}
+
+.class-info p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.0rem;
+   font-weight: 200;
+  color: #bbb;
+  margin-bottom: 20px;
+}
+
+.watch-button {
+  font-family: "Inter", sans-serif;
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 12px 100px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.watch-button:hover {
+  background-color: #f40612;
+}
+
+/* ============================= */
+/*  AULA EXTRA - SEÇÃO COMPLETA  */
+/* ============================= */
+.extra-class-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, #1a0000 0%, #0b0b0b 50%, #0f0f0f 100%);
+  padding: 120px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* EFEITO DE LUZ VERMELHA LATERAL */
+.extra-class-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background: radial-gradient(
+    circle at left center,
+    rgba(229, 9, 20, 0.35) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* TEXTO GIGANTE REPETIDO "AULA EXTRA" */
+.extra-background-text {
+  position: absolute;
+  top: 47%;
+  left: 1%;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.extra-background-text span {
+  display: block;
+  margin-bottom: -40px;
+  text-shadow: 0 0 35px rgba(229, 9, 20, 0.25);
+
+  /* fade da direita para a esquerda */
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+
+
+.extra-background-text span:nth-child(odd) {
+  animation: pulse 6s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.04;
+  }
+  to {
+    opacity: 0.08;
+  }
+}
+
+/* CONTEÚDO PRINCIPAL */
+.extra-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* CARD À ESQUERDA */
+.extra-left {
+  border: 2px solid #e50914;
+  box-shadow: 0 0 25px rgba(229, 9, 20, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.extra-left:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(229, 9, 20, 0.5);
+}
+
+.extra-image {
+  width: 420px;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+/* LADO DIREITO */
+.extra-right {
+  color: white;
+  max-width: 480px;
+}
+
+.extra-title {
+  font-family: "Inter", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.extra-description {
+  font-family: "Inter", sans-serif;
+  font-size: 1.0rem;
+  font-weight: 200;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* BOTÃO ASSISTIR */
+.extra-button {
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 14px 90px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.extra-button:hover {
+  background-color: #f40612;
+  transform: scale(1.03);
+}
+
+
+/* SEÇÃO REDES SOCIAIS - ESTILO MAIS SUTIL */
+.social-section {
+  text-align: center;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  padding: 80px 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-section::before {
+  content: "SOCIAL";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.05);
+  letter-spacing: 20px;
+  font-weight: 900;
+  user-select: none;
+  pointer-events: none;
+}
+
+.social-title {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.social-icon {
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+  color: #ccc; /* cor mais neutra */
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  color: #fff; 
+
+}
+
+/* remover cores fortes por rede */
+.social-icon.instagram,
+.social-icon.whatsapp,
+.social-icon.youtube {
+  color: #ccc; /* todas neutras */
+}
+
+
+/* ============================= */
+/* RESPONSIVO COMPLETO */
+/* ============================= */
+
+/* ===== TELAS MÉDIAS (900px – 600px) ===== */
+@media (max-width: 900px) {
+  /* HEADER */
+  .impactflix-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 10px;
+  }
+
+  .header-right {
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .user-name {
+    font-size: 0.9rem;
+  }
+
+  .vip-outline-button {
+    padding: 5px 12px;
+    font-size: 0.9rem;
+  }
+
+  .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* BANNER */
+  .impactflix-banner {
+    height: 80vh;
+  }
+
+  .banner-overlay {
+    padding-left: 20px;
+  }
+
+  .banner-title {
+    font-size: 3rem;
+    margin-top: -250px;
+    max-width: 90%;
+  }
+
+  /* AULAS */
+  .impactflix-classes {
+    gap: 30px;
+    padding: 40px 20px;
+    justify-content: center;
+  }
+
+  .class-card {
+    width: 100%;
+  }
+
+  .watch-button {
+    padding: 12px 50px;
+  }
+
+  /* EXTRA CLASS SECTION */
+  .extra-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .extra-background-text {
+    font-size: 5rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 0;
+  }
+
+  .extra-left, .extra-right {
+    max-width: 90%;
+  }
+
+  .extra-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .extra-button {
+    width: 80%;
+  }
+
+  /* SOCIAL SECTION */
+  .social-icons {
+    gap: 30px;
+  }
+
+  /* FOOTER */
+  .impactflix-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .footer-social {
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+/* ===== TELAS PEQUENAS (600px – 400px) ===== */
+@media (max-width: 600px) {
+  /* HEADER */
+  .impactflix-header {
+    padding: 10px 15px;
+  }
+
+  .vip-outline-button {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* BANNER */
+  .banner-title {
+    font-size: 2.2rem;
+    margin-top: -150px;
+  }
+
+  /* AULAS */
+  .class-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .class-info h4 {
+    font-size: 1rem;
+  }
+
+  .class-info p {
+    font-size: 0.9rem;
+  }
+
+  .watch-button {
+    padding: 10px 40px;
+    font-size: 0.9rem;
+  }
+
+  /* EXTRA CLASS SECTION */
+  .extra-title {
+    font-size: 2rem;
+  }
+
+  .extra-description {
+    font-size: 0.9rem;
+  }
+
+  .extra-button {
+    padding: 12px 70px;
+    font-size: 0.95rem;
+  }
+
+  /* SOCIAL SECTION */
+  .social-title {
+    font-size: 1.6rem;
+  }
+
+  .social-icon {
+    font-size: 2rem;
+  }
+
+  /* FOOTER */
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+
+  .footer-social a {
+    font-size: 1.6rem;
+  }
+}
+
+/* ===== TELAS MUITO PEQUENAS (<400px) ===== */
+@media (max-width: 400px) {
+  /* HEADER */
+  .impactflix-header {
+    padding: 8px 10px;
+  }
+
+  .vip-outline-button {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-name {
+    font-size: 0.8rem;
+  }
+
+  /* BANNER */
+  .banner-title {
+    font-size: 1.8rem;
+    margin-top: -100px;
+  }
+
+  /* AULAS */
+  .class-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .class-info h4 {
+    font-size: 0.9rem;
+  }
+
+  .class-info p {
+    font-size: 0.8rem;
+  }
+
+  .watch-button {
+    padding: 8px 30px;
+    font-size: 0.8rem;
+  }
+
+  /* EXTRA CLASS SECTION */
+  .extra-title {
+    font-size: 1.6rem;
+  }
+
+  .extra-description {
+    font-size: 0.8rem;
+  }
+
+  .extra-button {
+    padding: 10px 50px;
+    font-size: 0.85rem;
+  }
+
+  /* SOCIAL SECTION */
+  .social-title {
+    font-size: 1.4rem;
+  }
+
+  .social-icons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .social-icon {
+    font-size: 1.4rem;
+  }
+
+  /* FOOTER */
+  .footer-links a {
+    font-size: 0.75rem;
+  }
+
+  .footer-social a {
+    font-size: 1.4rem;
+  }
+}
+
+

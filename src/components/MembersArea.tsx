@@ -1,635 +1,171 @@
-import { useState } from "react";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { LogOut, MessageCircle, Play, X } from "lucide-react";
-import { Image } from "./Fallback/ImageWithFallback";
-import { useNavigate } from "react-router-dom";
-import { FaWhatsapp, FaYoutube, FaInstagram } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import "./MembersArea.css";
+import { FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { CommentsSection } from "./CommentsSection";
+import { useNavigate } from "react-router-dom";
 
 
+const bannerImages = [
+  "/images/banner.png",
+  "/images/talk.webp",
+  "/images/brand.webp",
+  "/images/not.webp",
+];
 
-interface MembersAreaProps {
-  user: { name: string; email: string; whatsapp: string };
-  onLogout: () => void;
-}
+export default function Impactflix() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fade, setFade] = useState(true);
 
-export function MembersArea({ user, onLogout }: MembersAreaProps) {
-  const [openVideoUrl, setOpenVideoUrl] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const courses = [
-    {
-      id: 1,
-      title: "Aula 01 - Fundamentos da Autoridade Digital",
-      description:
-        "Aprenda os pilares fundamentais para construir sua presença digital e se tornar uma autoridade no seu nicho.",
-      thumbnail: "images/Thumb - Aula 1.png",
-      duration: "1h 32 min",
-      url: "https://www.youtube.com/embed/-O2Sxq9ebUI", // link corrigido para modal
-      sideText: [
-        "O que é a Personal Brand e por que ela é indispensável para construir sua autoridade no digital.",
-        "Os 3 pilares da autoridade digital",
-        "O maior erro que destrói a sua Personal Brand (e como evitar).",
-        "Demonstração prática de um Agente de IA treinado por mim, para criar linhas editoriais em segundos.",
-        "Checklist para avaliar se a sua Personal Brand está saudável hoje.",
-      ],
-    },
-    {
-      id: 2,
-      title: "Aula 02 - Estratégias de Conteúdo e Engajamento",
-      description:
-        "Descubra como criar conteúdo que converte e engaja sua audiência, transformando seguidores em clientes.",
-      thumbnail: "images/Thumb - Aula 2.png",
-      duration: "50 min",
-      url: "https://www.youtube.com/embed/PmdGhcYj4pU",
-      sideText: [
-        "Os 10 passos para ativar a sua Personal Brand e se destacar no digital.",
-        "Como transformar sua história em storytelling gerando conexão e vendas.",
-        "Os canais certos para aparecer e como usá-los com estratégia.",
-        "Como usar provas sociais para aumentar credibilidade e atrair clientes.",
-      ],
-    },
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImage((prev) => (prev + 1) % bannerImages.length);
+        setFade(true);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" style={{ overflowX: "hidden" }}>
-      {/* MEDIA QUERY INLINE */}
-      <style>
-        {`
-          @media (max-width: 1024px) {
-            main {
-              margin-left: 0 !important;
-              padding: 16px !important;
-            }
-            .course-container {
-              flex-direction: column !important;
-              align-items: center !important;
-              margin-right: 0 !important;
-              gap: 20px !important;
-            }
-            .course-card {
-              width: 100% !important;
-              max-width: 350px !important;
-              margin: 0 auto !important;
-            }
-            .course-text {
-              max-width: 90% !important;
-              margin: 0 auto !important;
-              padding-top: 10px !important;
-              white-space: normal !important;
-              text-align: center !important;
-            }
-            .watch-button {
-              padding: 8px 0 !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            h2 {
-              font-size: 1.5rem !important;
-            }
-            .course-text h3 {
-              font-size: 1.3rem !important;
-            }
-            .course-text p {
-              font-size: 0.9rem !important;
-            }
-          }
-        `}
-      </style>
-
+    <div className="impactflix-container">
       {/* HEADER */}
-      <header className="bg-black/20 backdrop-blur-sm border-b border-white/10">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold">J</span>
-            </div>
-            <div>
-              <h1 className="text-white text-xl">Jornada da Autoridade Digital</h1>
-              <p className="text-gray-300 text-sm">1 e 2 de Outubro</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-white text-sm">Olá, {user.name.split(" ")[0]}!</span>
+      <header className="impactflix-header">
+        <img
+          src="/images/impactflix.png"
+          alt="Impactflix Logo"
+          className="impactflix-logo"
+        />
 
-            {/* Botão VIP no header */}
-            <Button
-              onClick={() => navigate("/vip")}
-              style={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro
-                border: "1px solid rgba(255, 204, 0, 0.3)",  // borda amarela
-                color: "rgb(255, 204, 0)",                    // texto amarelo
-                padding: "4px 13px",
-                borderRadius: "0.5rem",
-                fontWeight: 500,
-                fontSize: "14px",
-                transition: "all 0.2s ease",
-                animation: "float 2s ease-in-out infinite",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
-              }}
-            >
-              <Play className="w-3 h-3" />
-              Área VIP
-            </Button>
-
-            <Button
-              style={{ cursor: "pointer", }}
-              onClick={onLogout}
-              variant="outline"
-              size="sm"
-              className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Sair
-            </Button>
-          </div>
-
-          {/* Animação float (se ainda não estiver no style global) */}
-          <style>
-            {`
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0px); }
-    }
-  `}
-          </style>
-
+        <div className="header-right">
+          <span className="user-name">Olá, Usuário</span>
+          <button
+            className="vip-outline-button"
+            onClick={() => navigate("/vip")}
+          >
+            Área VIP
+          </button>
+          <img
+            src="/images/user (1).png"
+            alt="Avatar do Usuário"
+            className="user-avatar"
+          />
         </div>
       </header>
 
-
-      {/* MAIN */}
-      <main style={{ marginLeft: "60px", padding: "32px 16px" }}>
-        <div style={{ marginBottom: "32px" }}>
-          <h2 style={{ color: "white", fontSize: "1.975rem", marginBottom: "8px" }}>Suas Aulas</h2>
-          <p style={{ color: "#d1d5db", margin: 0 }}>Assista as aulas da jornada no seu próprio ritmo</p>
-        </div>
-
-
-        {/* LISTA DE CURSOS COM LINHA */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-          {courses.map((course, index) => (
-            <div key={course.id} style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                className="course-container"
-                style={{
-                  display: "flex",
-                  gap: "20px",
-                  marginRight: "65px",
-                  alignItems: "flex-start",
-                  flexDirection: index % 2 === 1 ? "row-reverse" : "row",
-                }}
-              >
-                <Card
-                  className="course-card bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 relative"
-                  style={{ marginBottom: "60px", width: "430px" }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <Image
-                      src={course.thumbnail}
-                      alt={course.title}
-                      style={{ width: "100%", height: "250px", objectFit: "cover", borderRadius: "0.5rem" }}
-                    />
-
-                    {/* DURAÇÃO */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "8px",
-                        right: "8px",
-                        backgroundColor: "rgba(0,0,0,0.6)",
-                        color: "white",
-                        fontSize: "10px",
-                        padding: "2px 5px",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      {course.duration}
-                    </div>
-
-                    {/* OVERLAY DO PLAY */}
-                    <div
-                      onClick={() => setOpenVideoUrl(course.url)}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "rgba(0,0,0,0.3)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        borderRadius: "0.5rem",
-                        transition: "background-color 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0)")}
-                    >
-                      <Play style={{ width: "30px", height: "30px", color: "white" }} />
-                    </div>
-                  </div>
-
-                  <CardContent style={{ padding: "10px" }}>
-                    <h3 style={{ fontWeight: "bold", color: "white", fontSize: "20px", marginBottom: "5px" }}>
-                      {course.title}
-                    </h3>
-                    <p style={{ color: "white", fontSize: "15px", marginBottom: "8px" }}>{course.description}</p>
-                    <Button
-                      onClick={() => window.open(course.url.replace("embed/", "watch?v="), "_blank")}
-                      className="watch-button w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
-                      style={{ cursor: "pointer", marginTop: "10px", fontSize: "15px", padding: "6px 120px" }}
-                    >
-                      Assistir
-                      <Play className="w-3 h-3 ml-2" />
-                    </Button>
-
-                  </CardContent>
-                </Card>
-
-                <div
-                  className="course-text"
-                  style={{
-                    color: "white",
-                    maxWidth: "300px",
-                    paddingTop: "60px",
-                    lineHeight: "1.6",
-                    whiteSpace: "nowrap",
-                    marginRight: index % 2 === 1 ? "20%" : "10px",
-                    marginLeft: "30px",
-                  }}
-                >
-                  <h3 style={{ fontWeight: "bold", fontSize: "1.65rem", marginBottom: "12px" }}>
-                    O que você vai aprender:
-                  </h3>
-                  {course.sideText.map((text, idx) => (
-                    <p key={idx} style={{ fontSize: "15px", marginBottom: "8px" }}>{text}</p>
-                  ))}
-                </div>
-              </div>
-
-              {/* LINHA SEPARADORA */}
-              <hr style={{ border: "1px solid rgba(255,255,255,0.2)", width: "100%", margin: "20px 0" }} />
-            </div>
-          ))}
-        </div>
-      </main>
-
-      {/* BOTÃO ÁREA VIP */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
-        <Button
-          onClick={() => navigate("/vip")}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro /20
-            border: "1px solid rgba(255, 204, 0, 0.3)",  // amarelo médio /30
-            color: "rgb(255, 204, 0)",                    // amarelo principal
-            padding: "20px 94px",
-            borderRadius: "0.5rem",
-            fontWeight: 500,
-            fontSize: "15px",
-            transition: "all 0.2s ease",
-            animation: "float 2s ease-in-out infinite",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
-          }}
-        >
-          <Play style={{ width: "16px", height: "16px" }} />
-          Acessar Área VIP
-        </Button>
-
-        {/* Animação */}
-        <style>
-          {`
-          @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-          }
-        `}
-        </style>
-      </div>
-
-
-      {/* CARDS INFERIORES */}
-      <div
+      {/* BANNER */}
+      <section
+        className={`impactflix-banner ${fade ? "fade-in" : "fade-out"}`}
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "15px",
-          justifyContent: "center",
-          marginTop: "80px",
-          padding: "0 8px",
+          backgroundImage: `url(${bannerImages[currentImage]})`,
         }}
       >
-        {[
-          { title: "Clareza", text: "Entenda de forma simples o que realmente é Personal Brand e por que ela é a chave para atrair clientes sem precisar virar refém de likes ou tendências passageiras.", colorFrom: "#4B0082", colorTo: "#1A1A40" },
-          { title: "Método", text: "Descubra o passo a passo em 10 etapas para transformar sua presença no digital em vendas — sem depender de improviso ou “inspiração” para postar.", colorFrom: "#800000", colorTo: "#4B0000" },
-          { title: "Tecnologia", text: "Experimente o poder dos meus Agentes de IA, para manter sua comunicação consistente e alinhada com sua essência — mesmo quando faltar tempo ou criatividade.", colorFrom: "#003366", colorTo: "#001933" },
-          { title: "Resultados", text: "Aprenda como usar sua autoridade digital para gerar confiança, ser lembrado e fechar negócios reais — porque visibilidade sem clientes não paga as contas.", colorFrom: "#664400", colorTo: "#331a00" },
-        ].map((card, idx) => (
-          <div
-            key={idx}
-            style={{
-              background: `linear-gradient(135deg, ${card.colorFrom}, ${card.colorTo})`,
-              borderRadius: "1rem",
-              padding: "24px",
-              width: "280px",
-              color: "white",
-              boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
-              transition: "all 0.3s ease",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform = "scale(1.05)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 30px rgba(0,0,0,0.35)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 20px rgba(0,0,0,0.25)";
-            }}
-          >
-            <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "12px" }}>{card.title}</h3>
-            <p style={{ fontSize: "0.95rem", lineHeight: "1.5" }}>{card.text}</p>
+        <div className="banner-overlay">
+          <h2 className="banner-title">
+            COMUNIDADE <br /> PERSONAL BRAND
+          </h2>
+        </div>
+      </section>
+
+      {/* AULAS */}
+      <section className="impactflix-classes">
+        <div className="class-card">
+          <img src="/images/banner2.png" alt="Aula 01" className="class-image" />
+          <div className="class-info">
+            <h3>Aula 01</h3>
+            <h4>Fundamentos da Autoridade Digital</h4>
+            <p>
+              Aprenda os pilares fundamentais para construir sua presença digital
+              e se tornar uma autoridade no seu nicho.
+            </p>
+            <button className="watch-button">Assistir ▶</button>
           </div>
-        ))}
+        </div>
 
-      </div>
-
-
-
-      {/* ÁREA DE REDES SOCIAIS MODERNA - GLASS + GRADIENTE */}
-      {/* LINHA SEPARADORA */}
-      <hr style={{ border: "1px solid rgba(255,255,255,0.2)", width: "100%", margin: "100px 0" }} />
-
-      {/* ÁREA DE REDES SOCIAIS MODERNA - GLASS + GRADIENTE COM BOTÃO */}
-      <div style={{
-        backdropFilter: "blur(12px)",
-        borderRadius: "1rem",
-        padding: "40px 20px",
-        marginTop: "80px",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: "24px"
-      }}>
-        {[
-          {
-            title: "WhatsApp",
-            description: "Receba avisos de novas aulas e conteúdos direto no seu WhatsApp.",
-            colorFrom: "#3DDC84",
-            colorTo: "#0F8A5F",
-            link: "https://wa.me/5551994078255",
-            icon: <FaWhatsapp size={40} />
-          },
-          {
-            title: "YouTube",
-            description: "Inscreva-se no meu canal para acessar aulas exclusivas e conteúdos de tráfego.",
-            colorFrom: "#FF4C4C",
-            colorTo: "#C70000",
-            link: "https://youtube.com/seuCanal",
-            icon: <FaYoutube size={40} />
-          },
-          {
-            title: "Instagram",
-            description: "Siga meu Instagram, acompanhe lives, reels e novidades todos os dias.",
-            colorFrom: "#E1306C",
-            colorTo: "#F77737",
-            link: "https://instagram.com/seuPerfil",
-            icon: <FaInstagram size={40} />
-          }
-        ].map((social, idx) => (
-          <div key={idx}
-            style={{
-              flex: "1 1 220px",
-              maxWidth: "260px",
-              background: "rgba(255,255,255,0.05)",
-              borderRadius: "1.2rem",
-              padding: "20px",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "center",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-              backdropFilter: "blur(10px)",
-              border: `1px solid rgba(255,255,255,0.1)`
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLDivElement;
-              el.style.transform = "translateY(-8px) scale(1.02)";
-              el.style.boxShadow = `0 16px 32px ${social.colorTo}40`;
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLDivElement;
-              el.style.transform = "translateY(0) scale(1)";
-              el.style.boxShadow = "0 8px 24px rgba(0,0,0,0.25)";
-            }}
-          >
-            <div style={{ marginBottom: "12px" }}>
-              {social.icon}
-            </div>
-            <h3 style={{ fontWeight: 700, fontSize: "1.2rem", marginBottom: "8px" }}>{social.title}</h3>
-            <p style={{ fontSize: "0.9rem", textAlign: "center", marginBottom: "12px" }}>{social.description}</p>
-
-            {/* Botão para redirecionar */}
-            <Button
-              style={{
-                background: "rgba(255,255,255,0.15)",
-                color: "white",
-                fontWeight: 500,
-                cursor: "pointer",
-                padding: "10px 20px",
-                borderRadius: "0.5rem",
-                border: "1px solid rgba(255,255,255,0.2)",
-                transition: "all 0.25s ease",
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLButtonElement;
-                el.style.background = "rgba(255,255,255,0.3)";
-                el.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLButtonElement;
-                el.style.background = "rgba(255,255,255,0.15)";
-                el.style.transform = "scale(1)";
-              }}
-              onClick={() => window.open(social.link, "_blank")}
-            >
-              Acessar
-            </Button>
+        <div className="class-card">
+          <img src="/images/banner3.png" alt="Aula 02" className="class-image" />
+          <div className="class-info">
+            <h3>Aula 02</h3>
+            <h4>Estratégias de Conteúdo e Engajamento</h4>
+            <p>
+              Descubra como criar conteúdo que converte e engaja sua audiência,
+              transformando seguidores em clientes.
+            </p>
+            <button className="watch-button">Assistir ▶</button>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
 
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
-        <Button
-          onClick={() => navigate("/vip")}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            marginTop: "70px",
-            gap: "6px",
-            backgroundColor: "rgba(255, 204, 0, 0.2)",   // amarelo claro /20
-            border: "1px solid rgba(255, 204, 0, 0.3)",  // amarelo médio /30
-            color: "rgb(255, 204, 0)",                    // amarelo principal
-            padding: "20px 94px",
-            borderRadius: "0.5rem",
-            fontWeight: 500,
-            fontSize: "15px",
-            transition: "all 0.2s ease",
-            animation: "float 2s ease-in-out infinite",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.3)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(255, 204, 0, 0.2)";
-          }}
-        >
-          <Play style={{ width: "16px", height: "16px" }} />
-          Acessar Área VIP
-        </Button>
-      </div>
+      <section className="extra-class-section">
+        <div className="extra-background-text">
+          <span>AULA EXTRA</span>
+          <span>AULA EXTRA</span>
+          <span>AULA EXTRA</span>
+          <span>AULA EXTRA</span>
+          <span>AULA EXTRA</span>
+        </div>
 
-      {/* SEÇÃO DE COMENTÁRIOS */}
+        <div className="extra-content">
+          <div className="extra-left">
+            <img
+              src="/images/EXTRA.png"
+              alt="Aula Extra"
+              className="extra-image"
+            />
+          </div>
+
+          <div className="extra-right">
+            <h2 className="extra-title">Aula Extra</h2>
+            <p className="extra-description">
+              Informações sobre a aula extra, informações sobre a aula extra,
+              informações sobre a aula extra, informações sobre a aula extra,
+              informações sobre a aula extra,Informações sobre a aula extra, informações sobre a aula extra,
+              informações sobre a aula extra, informações sobre a aula extra,
+              informações sobre a aula extra.
+            </p>
+            <button className="extra-button">Assistir ▶</button>
+          </div>
+        </div>
+      </section>
+
       <CommentsSection />
 
 
-
-      {/* SEÇÃO RAFA */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "40px",
-          marginTop: "250px",
-          flexWrap: "wrap",
-          padding: "0 16px",
-        }}
-      >
-        <img
-          src="/images/01-removebg-preview.png"
-          alt="Rafa Carmona"
-          style={{ width: "400px", borderRadius: "8px", maxWidth: "100%" }}
-        />
-        <div style={{ color: "white", maxWidth: "500px", lineHeight: "1.6", textAlign: "left" }}>
-          <h2 style={{ fontSize: "2rem", marginBottom: "16px" }}>Rafa Carmona</h2>
-          <p style={{ marginBottom: "12px" }}>
-            Rafa Carmona nasceu para liderar, ensinar e transformar a mentalidade de pessoas que buscam autoridade no digital.
-          </p>
-          <p style={{ marginBottom: "12px" }}>
-            Com uma trajetória internacional consolidada, Rafa ajudou empreendedores e CEOs a desbloquear seu verdadeiro valor e a se tornarem ímãs de oportunidades.
-          </p>
-          <p style={{ marginBottom: "12px" }}>
-            Seu método é direto ao ponto: construir autoridade, atrair reconhecimento e transformar presença em resultados reais. Agora, ele está determinado a te guiar nessa jornada e mostrar como o mercado pode enxergar (e valorizar) todo o seu potencial.
-          </p>
+      {/* REDES SOCIAIS */}
+      <section className="social-section">
+        <h2 className="social-title">Siga-nos nas redes sociais</h2>
+        <div className="social-icons">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon instagram"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://wa.me/5599999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon whatsapp"
+          >
+            <FaWhatsapp />
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon youtube"
+          >
+            <FaYoutube />
+          </a>
         </div>
-      </div>
-
-      {/* FOOTER */}
-      <footer className="bg-black/20 backdrop-blur-sm border-t border-white/10 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-center md:text-left mb-4 md:mb-0">
-              <p className="text-white text-sm">© 2025 Oi Digital Media</p>
-              <p className="text-gray-400 text-xs">Todos os direitos reservados</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-green-600/20 border-green-500/30 text-green-400 hover:bg-green-600/30"
-                style={{ cursor: "pointer" }}
-                onClick={() =>
-                  window.open("https://wa.me/5551994078255", "_blank")
-                }
-              >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Suporte WhatsApp
-              </Button>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* MODAL DE VÍDEO */}
-      {openVideoUrl && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0,0,0,0.85)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 9999,
-            padding: "20px",
-          }}
-        >
-          <div style={{ position: "relative", width: "100%", maxWidth: "900px" }}>
-            <iframe
-              width="100%"
-              height="500px"
-              src={openVideoUrl}
-              title="Vídeo do Curso"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                borderRadius: "0.5rem"
-              }}
-            ></iframe>
-            <Button
-              onClick={() => setOpenVideoUrl(null)}
-              style={{
-                position: "absolute",
-                top: "-40px",
-                right: "0",
-                backgroundColor: "hsla(0, 67%, 32%, 1.00)",
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-                cursor: "pointer",
-              }}
-            >
-              <X className="w-4 h-4" />
-              Fechar
-            </Button>
-          </div>
-        </div>
-      )}
+      </section>
 
 
     </div>
-
   );
 }
