@@ -1,0 +1,86 @@
+.social-section {
+  text-align: center;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  padding: 80px 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.social-section::before {
+  content: "SOCIAL";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.05);
+  letter-spacing: 20px;
+  font-weight: 900;
+  user-select: none;
+  pointer-events: none;
+}
+
+.social-title {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.footer-text{
+  margin-top: 50px;
+}
+
+.social-icon {
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+  color: #ccc; 
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  color: #fff; 
+}
+
+.social-icon.instagram,
+.social-icon.whatsapp,
+.social-icon.youtube {
+  color: #ccc; 
+}
+
+@media (max-width: 900px) {
+  .social-section::before {
+    font-size: 6rem;
+    top: 25%;
+    letter-spacing: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .social-section::before {
+    font-size: 4rem;
+    top: 28%;
+    letter-spacing: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .social-section::before {
+    font-size: 2.8rem;
+    top: 30%;
+    letter-spacing: 6px;
+  }
+}
+

@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import MembersArea from "./components/MembersArea";
-import { VIPArea } from "./components/VipArea";
+import { ScrollToTop } from "./components/ScrollToTop";
+
+import VipSignup from "./components/VipSignup";
 
 interface User {
   displayName: string;
@@ -10,7 +12,7 @@ interface User {
 }
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [, setUser] = useState<User | null>(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
@@ -29,25 +31,26 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
-        {/* Área de membros */}
-        <Route path="/members" element={<MembersArea />} />
-
-        {/* Área VIP */}
-        <Route
+         <Route path="/members" element={<MembersArea />} /> 
+        {/* <Route path="/entregaveis" element={<Entregaveis />} /> */}
+        {/* <Route path="/comunidade" element={<CommunityPage />} /> */}
+        {/* <Route path="/aulasextras" element={<AulasExtras />} /> */}
+         <Route path="/VipSignup" element={<VipSignup />} /> 
+        {/*<Route
           path="/vip"
           element={
             <VIPArea
-              //user={{
-                //name: user?.displayName || "Visitante",
-                //email: user?.email || "visitante@example.com",
-               // whatsapp: user?.whatsapp || "",
-              //}}
+            //user={{
+            //name: user?.displayName || "Visitante",
+            //email: user?.email || "visitante@example.com",
+            // whatsapp: user?.whatsapp || "",
+            //}}
             />
           }
-        />
+        />*/}
 
-        {/* Redireciona tudo para /members */}
         <Route path="*" element={<Navigate to="/members" />} />
       </Routes>
     </Router>

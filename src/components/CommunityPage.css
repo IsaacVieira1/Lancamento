@@ -1,0 +1,164 @@
+.community-container {
+  background-color: #0b0b0b;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Cabeçalho */
+.community-header {
+  margin-bottom: 30px;
+}
+
+.community-header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.back-button {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #e50914;
+  border: 1px solid #e50914;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #e50914;
+  color: white;
+}
+
+.community-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.community-icon {
+  font-size: 1.8rem;
+  color: #e50914;
+}
+
+.community-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.community-subtitle {
+  color: #ccc;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Feed */
+.community-feed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  max-height: 70vh;
+  padding-right: 5px;
+}
+
+.community-post {
+  display: flex;
+  align-items: flex-start;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 15px;
+  gap: 10px;
+  transition: background 0.2s ease;
+}
+
+.community-post:hover {
+  background-color: #252525;
+}
+
+.user-icon {
+  font-size: 38px;
+  color: #e50914;
+}
+
+.post-content {
+  flex: 1;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #bbb;
+  margin-bottom: 6px;
+}
+
+/* Campo de input */
+.community-input {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.community-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.community-input button {
+  margin-left: 10px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.community-input button:hover {
+  background-color: #ff1a1a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .community-container {
+    padding: 12px;
+  }
+
+  .community-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .community-input input {
+    font-size: 0.9rem;
+  }
+
+  .back-button {
+    align-self: center;
+  }
+}

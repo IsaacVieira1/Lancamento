@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./MembersArea.css";
-import { FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import { CommentsSection } from "./CommentsSection";
 import { useNavigate } from "react-router-dom";
-
+import SocialSection from "./SocialSection";
 
 const bannerImages = [
   "/images/banner.png",
@@ -16,6 +16,8 @@ export default function Impactflix() {
   const [currentImage, setCurrentImage] = useState(0);
   const [fade, setFade] = useState(true);
 
+  const [showGatePopup, setShowGatePopup] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +26,8 @@ export default function Impactflix() {
       setTimeout(() => {
         setCurrentImage((prev) => (prev + 1) % bannerImages.length);
         setFade(true);
-      }, 300);
-    }, 3000);
+      }, 200);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -44,7 +46,7 @@ export default function Impactflix() {
           <span className="user-name">Olá, Usuário</span>
           <button
             className="vip-outline-button"
-            onClick={() => navigate("/vip")}
+            onClick={() => navigate("/VipSignup")}
           >
             Área VIP
           </button>
@@ -81,7 +83,9 @@ export default function Impactflix() {
               Aprenda os pilares fundamentais para construir sua presença digital
               e se tornar uma autoridade no seu nicho.
             </p>
-            <button className="watch-button">Assistir ▶</button>
+            <button className="watch-button" onClick={() => setShowGatePopup(true)}>
+              <FaPlay /> Assistir
+            </button>
           </div>
         </div>
 
@@ -94,7 +98,9 @@ export default function Impactflix() {
               Descubra como criar conteúdo que converte e engaja sua audiência,
               transformando seguidores em clientes.
             </p>
-            <button className="watch-button">Assistir ▶</button>
+            <button className="watch-button" onClick={() => setShowGatePopup(true)}>
+              <FaPlay /> Assistir
+            </button>
           </div>
         </div>
       </section>
@@ -121,51 +127,39 @@ export default function Impactflix() {
             <h2 className="extra-title">Aula Extra</h2>
             <p className="extra-description">
               Informações sobre a aula extra, informações sobre a aula extra,
-              informações sobre a aula extra, informações sobre a aula extra,
-              informações sobre a aula extra,Informações sobre a aula extra, informações sobre a aula extra,
-              informações sobre a aula extra, informações sobre a aula extra,
-              informações sobre a aula extra.
+              informações sobre a aula extra, informações sobre a aula extra.
             </p>
-            <button className="extra-button">Assistir ▶</button>
+            <button className="extra-button" onClick={() => setShowGatePopup(true)}>
+              <FaPlay /> Assistir
+            </button>
           </div>
         </div>
       </section>
 
       <CommentsSection />
 
-
       {/* REDES SOCIAIS */}
-      <section className="social-section">
-        <h2 className="social-title">Siga-nos nas redes sociais</h2>
-        <div className="social-icons">
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon instagram"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="https://wa.me/5599999999999"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon whatsapp"
-          >
-            <FaWhatsapp />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon youtube"
-          >
-            <FaYoutube />
-          </a>
+      <SocialSection />
+
+      {/* POP-UP */}
+      {showGatePopup && (
+        <div className="gate-popup-overlay" onClick={() => setShowGatePopup(false)}>
+          <div className="gate-popup" onClick={(e) => e.stopPropagation()}>
+            <img src="/images/Ads Post 4 - VERMELHO.png" alt="Acesso Bloqueado" className="gate-popup-image" />
+
+            <button
+              className="gate-popup-learn-more"
+              onClick={() => navigate("/VipSignup")}
+            >
+              Saiba mais
+            </button>
+
+            <button className="gate-popup-close" onClick={() => setShowGatePopup(false)}>
+              Fechar
+            </button>
+          </div>
         </div>
-      </section>
-
-
+      )}
     </div>
   );
 }

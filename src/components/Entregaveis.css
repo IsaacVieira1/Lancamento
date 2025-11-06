@@ -1,0 +1,149 @@
+.entregaveis-area {
+  background-color: #0b0b0b;
+  color: #fff;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  padding: 40px 60px;
+}
+
+.entregaveis-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.titulo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.titulo-icon {
+  font-size: 2.2rem;
+  color: #e50914;
+}
+
+.entregaveis-header h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.entregaveis-header p {
+  color: #bbb;
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+.voltar-btn {
+  background: #1a1a1a;       
+  border: 1px solid #e50914; 
+  color: #e50914;            
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;        
+  border-radius: 10px;     
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+}
+
+.voltar-btn:hover {
+  background: #e50914;     
+  color: #fff;               
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5); 
+}
+
+/* Livros */
+.livros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-bottom: 100px;
+}
+
+.livro-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2a2a2a;
+}
+
+.livro-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.livro-capa {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.livro-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.livro-info h2 {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.livro-info p {
+  font-size: 0.95rem;
+  color: #bbb;
+  flex-grow: 1;
+}
+
+.btn-baixar {
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-baixar:hover {
+  background: #ff1c2f;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .entregaveis-area {
+    padding: 20px;
+  }
+
+  .livro-capa {
+    height: 280px;
+  }
+
+  .voltar-btn {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-bottom: 20px;
+  }
+
+  .titulo-container h1 {
+    font-size: 1.8rem;
+  }
+}

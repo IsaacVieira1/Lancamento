@@ -1,0 +1,422 @@
+:root {
+  --bg: #050506;
+  --card-width: 230px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: #fff;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.aulas-extras {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+.aulas-extras .vip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 48px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5), transparent);
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.aulas-extras .vip-header .logo {
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: #e50914;
+}
+
+.aulas-extras .vip-nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.aulas-extras .vip-nav .nav-link {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 2px solid transparent;
+}
+
+/* ===== BOTÕES HEADER ===== */
+.aulas-extras .btn-voltar {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 2px solid #aaa;
+}
+
+.aulas-extras .btn-voltar:hover {
+  background: #aaa;
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.aulas-extras .btn-pdf {
+  background: linear-gradient(90deg, #e50914, #f40612);
+  color: #fff;
+  border: 2px solid #e50914;
+}
+
+.aulas-extras .btn-pdf:hover {
+  background: linear-gradient(90deg, #f40612, #e50914);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+/* ===== BANNER ===== */
+.aulas-extras .vip-main {
+  flex: 1;
+  padding: 0;
+}
+
+.aulas-extras .vip-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.aulas-extras .banner-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,0) 30%, rgba(8,8,8,0.85) 90%);
+}
+
+.aulas-extras .banner-content {
+  position: relative;
+  padding: 100px 80px;
+  max-width: 60%;
+  z-index: 5;
+}
+
+.aulas-extras .banner-title {
+  font-size: 4.5rem;
+  margin: 0 0 16px;
+  font-weight: 800;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+.aulas-extras .banner-desc {
+  max-width: 80%;
+  color: #d9d9d9;
+  font-size: 1.2rem;
+  margin-bottom: 26px;
+}
+
+.aulas-extras .banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.aulas-extras .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.aulas-extras .btn-play {
+  background: #e6e6e6;
+  color: #000;
+  font-weight: 700;
+}
+
+.aulas-extras .btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== ROWS ===== */
+.aulas-extras .vip-rows {
+  padding: 40px 0 100px;
+  background: var(--bg);
+  margin-top: -60px;
+  position: relative;
+  z-index: 4;
+}
+
+.aulas-extras .row-wrap {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 0 48px;
+}
+
+.aulas-extras .row-title {
+  margin: 8px 0 14px 8px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.aulas-extras .row-controls {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.aulas-extras .row-arrow {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.aulas-extras .row-arrow:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.aulas-extras .row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 6px 20px;
+  scroll-behavior: smooth;
+}
+
+.aulas-extras .row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.aulas-extras .row::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+/* ===== CARDS ===== */
+.aulas-extras .card {
+  min-width: var(--card-width);
+  max-width: var(--card-width);
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  flex-shrink: 0;
+}
+
+.aulas-extras .card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+}
+
+.aulas-extras .card-thumb {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.aulas-extras .card-meta {
+  padding: 10px;
+  background: rgba(15,15,15,0.85);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.aulas-extras .card:hover .card-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aulas-extras .card-title {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: bold;
+  color: #eee;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.aulas-extras .card-desc {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 4px;
+}
+
+.aulas-extras .btn-play-card {
+  margin-top: 10px;
+  background: #e6e6e6;
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.aulas-extras .btn-play-card:hover {
+  transform: scale(1.05);
+}
+
+/* Botão grande de PDF abaixo dos carrosséis */
+.aulas-pdf-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* ajuste para subir ou descer */
+}
+
+.aulas-pdf-btn {
+  background: linear-gradient(90deg, #e50914, #f40612);
+  color: #fff;
+  border: 2px solid #e50914;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 78px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.aulas-pdf-btn:hover {
+  background: linear-gradient(90deg, #f40612, #e50914);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  :root { --card-width: 200px; }
+
+  .aulas-extras .banner-content {
+    padding: 80px 50px;
+    max-width: 80%;
+  }
+
+  .aulas-extras .banner-title {
+    font-size: 3.5rem;
+  }
+
+  .aulas-extras .card-thumb {
+    height: 220px;
+  }
+}
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+  :root { --card-width: 180px; }
+
+  .aulas-extras .vip-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 24px;
+  }
+
+  .aulas-extras .banner-content {
+    padding: 60px 32px;
+    max-width: 100%;
+  }
+
+  .aulas-extras .banner-title {
+    font-size: 2.6rem;
+  }
+
+  .aulas-extras .banner-desc {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .aulas-extras .card-thumb {
+    height: 160px;
+  }
+
+  .aulas-extras .vip-rows {
+    padding-bottom: 80px;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  :root { --card-width: 150px; }
+
+  .aulas-extras .vip-header {
+    padding: 12px 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .aulas-extras .banner-content {
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .aulas-extras .banner-title {
+    font-size: 1.9rem;
+  }
+
+  .aulas-extras .banner-desc {
+    display: none;
+  }
+
+  .aulas-extras .banner-actions {
+    justify-content: center;
+  }
+
+  .aulas-extras .vip-banner {
+    height: 65vh;
+  }
+
+  .aulas-extras .row-wrap {
+    padding: 0 16px;
+  }
+
+  .aulas-extras .card-thumb {
+    height: 120px;
+  }
+}

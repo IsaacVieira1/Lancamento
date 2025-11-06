@@ -216,21 +216,268 @@
   color: #fff;
 }
 
+/* LINHA SEPARADORA */
+.vip-separator {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #e50914, transparent);
+  margin: 50px 0;
+  border-radius: 2px;
+}
+
+
+/* AULAS EXTRAS */
+.extra-title {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  border-left: 4px solid #e50914;
+  padding-left: 10px;
+}
+
+/* CARDS UNIFORMES PARA IA E AULAS EXTRAS */
+
+
+.vip-carousel .vip-card img {
+  border-radius: 6px;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.vip-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px; /* espaço abaixo do carrossel */
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.carousel-arrow:hover {
+  background: #e50914;
+}
+
+.carousel-arrow.left {
+  left: -20px;
+}
+
+.carousel-arrow.right {
+  right: -20px;
+}
+
+/* BOTÃO IR PARA PDFS */
+.pdf-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 20px 0;
+}
+
+.pdf-button {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 68px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+
+.pdf-button:hover {
+  background: #f6121d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.45);
+}
+
+.extra-video {
+  width: 400px;   /* largura maior */
+  height: 225px;  /* altura proporcional 16:9 */
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Linha separadora entre Aulas Extras */
+.extra-separator {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #e50914, transparent);
+  margin: 40px 0; /* espaço acima e abaixo da linha */
+  border-radius: 2px;
+}
+
+/* Botões na sobreposição do card */
+.vip-card-buttons {
+  display: flex;
+  gap: 8px; /* espaço entre os botões */
+}
+
+/* Ajuste dos botões */
+.vip-card-buttons button {
+  flex: 1; /* opcional, faz os botões terem mesma largura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vip-card-buttons button:hover {
+  background: #e50914;
+  border-color: #e50914;
+}
+
+/* Container dos dois botões */
+/* Container dos dois botões */
+.extra-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  width: 90%; /* garante que os botões usem o mesmo espaço */
+}
+
+/* Estilo dos botões com mesmo tamanho */
+.extra-button2 {
+  flex: 1; /* faz os dois ocuparem o mesmo tamanho */
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.25);
+}
+
+.extra-button2:hover {
+  background: #f6121d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(229, 9, 20, 0.4);
+}
+
+.footer-text {
+  margin-top: 85px;
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+  position: relative;  /* garante que fique acima do ::before */
+  z-index: 2;          /* acima do pseudo-elemento */
+}
+
+
+.vip-espace{
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  border-left: 4px solid #e50914;
+  padding-left: 10px;
+}
+
 /* RESPONSIVIDADE */
 
-/* Tablet */
-@media (max-width: 1024px) {
+/* ===================== */
+/* RESPONSIVIDADE GERAL */
+/* ===================== */
+
+/* Telas até 1200px (notebooks e tablets grandes) */
+@media (max-width: 1200px) {
   .vip-banner {
-    height: 400px;
+    height: 420px;
+  }
+
+  .extra-video {
+    width: 360px;
+    height: 202px;
+  }
+
+  .extra-content {
+    gap: 30px;
   }
 
   .vip-banner-overlay h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+}
+
+/* ====================== */
+/* Telas até 900px (tablets) */
+/* ====================== */
+@media (max-width: 900px) {
+  /* Estrutura geral */
+  .vip-area {
+    flex-direction: column;
+  }
+
+  .vip-sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+  }
+
+  .vip-main {
+    padding: 15px;
+  }
+
+  /* Banner */
+  .vip-banner {
+    height: 350px;
+    border-radius: 0;
+  }
+
+  .vip-banner-overlay {
+    padding: 25px;
+  }
+
+  .vip-banner-overlay h1 {
+    font-size: 1.8rem;
   }
 
   .vip-play-btn {
     padding: 8px 16px;
     font-size: 0.9rem;
+  }
+
+  /* Carrossel */
+  .vip-carousel {
+    gap: 10px;
   }
 
   .vip-card {
@@ -241,53 +488,85 @@
     font-size: 0.8rem;
   }
 
+  /* Aulas Extras */
+  .extra-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 40px; /* empurra um pouco mais para baixo */
+  }
+
+  .extra-left2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .extra-right {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .extra-video {
+    width: 90%;
+    height: auto;
+  }
+
+  .extra-buttons {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .extra-button2 {
+    width: 80%;
+  }
+
+  /* Oculta os spans “AULAS IA” */
+  .extra-background-text {
+    display: none;
+  }
+
+  /* Social section */
+  .social-section {
+    padding: 60px 20px;
+    margin-top: 60px;
+  }
+
   .social-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .social-icon {
     font-size: 2rem;
   }
+
+  /* PDF Button */
+  .pdf-button {
+    padding: 10px 50px;
+    font-size: 1rem;
+  }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .vip-area {
-    flex-direction: column;
-  }
-
-  .vip-sidebar {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .vip-icon-sidebar {
-    margin: 0;
-  }
-
+/* ====================== */
+/* Telas até 600px (celulares médios) */
+/* ====================== */
+@media (max-width: 600px) {
   .vip-banner {
-    height: 300px;
-    border-radius: 0;
+    height: 280px;
   }
 
   .vip-banner-overlay h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .vip-play-btn {
+    font-size: 0.8rem;
     padding: 6px 12px;
-    font-size: 0.85rem;
-  }
-
-  .vip-carousel {
-    gap: 10px;
-    padding-bottom: 8px;
   }
 
   .vip-card {
-    min-width: 140px;
+    min-width: 130px;
   }
 
   .vip-card-overlay span {
@@ -295,59 +574,75 @@
   }
 
   .vip-card-overlay button {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 2px 4px;
   }
 
-  .social-section {
-    padding: 50px 15px;
-    margin-top: 50px;
+  .extra-title {
+    font-size: 1.4rem;
+  }
+
+  .extra-description {
+    font-size: 0.95rem;
+  }
+
+  .extra-button2 {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .vip-espace {
+    font-size: 1.4rem;
   }
 
   .social-title {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-  }
-
-  .social-icons {
-    gap: 25px;
+    font-size: 1.4rem;
   }
 
   .social-icon {
     font-size: 1.8rem;
   }
+
+  .pdf-button {
+    width: 90%;
+    font-size: 0.95rem;
+  }
 }
 
-/* Mobile Extra Small */
-@media (max-width: 480px) {
+/* ====================== */
+/* Telas até 400px (celulares pequenos) */
+/* ====================== */
+@media (max-width: 400px) {
   .vip-banner {
-    height: 250px;
+    height: 230px;
   }
 
   .vip-banner-overlay h1 {
-    font-size: 1.4rem;
-  }
-
-  .vip-play-btn {
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    font-size: 1.3rem;
   }
 
   .vip-card {
-    min-width: 120px;
+    min-width: 110px;
   }
 
   .vip-card-overlay span {
     font-size: 0.7rem;
   }
 
-  .vip-card-overlay button {
-    font-size: 0.8rem;
-    padding: 2px 3px;
+  .extra-content {
+    margin-top: 25px;
+  }
+
+  .extra-title {
+    font-size: 1.2rem;
+  }
+
+  .extra-description {
+    font-size: 0.9rem;
   }
 
   .social-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .social-icon {
